@@ -17,6 +17,7 @@
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
+# Add support for SmartDNS
 WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
 mkdir $WORKINGDIR -p
 rm $WORKINGDIR/* -fr
@@ -35,3 +36,11 @@ unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
 mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
 rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
 rm $WORKINGDIR/${LUCIBRANCH}.zip
+
+# Add support for OpenClash
+OCDIR="`pwd`/openclash"
+mkdir $OCDIR
+wget https://github.com/vernesong/OpenClash/archive/master.zip  -O $OCDIR/master.zip
+unzip $OCDIR/master.zip -d $OCDIR
+mv $OCDIR/OpenClash-master/luci-app-openclash/ ./package
+rm -rf $OCDIR/
